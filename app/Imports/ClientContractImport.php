@@ -4,17 +4,25 @@ namespace App\Imports;
 
 use App\Models\ClientContract;
 use Maatwebsite\Excel\Concerns\ToModel;
+use Maatwebsite\Excel\Concerns\WithChunkReading;
+use Maatwebsite\Excel\Concerns\RemembersRowNumber;
 
-class ClientContractImport implements ToModel
+class ClientContractImport implements ToModel, WithChunkReading
 {
     /**
     * @param array $row
     *
     * @return \Illuminate\Database\Eloquent\Model|null
     */
+    use RemembersRowNumber;
+
+
     public function model(array $row)
     {
+        $currentRowNumber = $this->getRowNumber();
         
+        print_r("importing ".$currentRowNumber."\n\n");
+
         return new ClientContract([
             'IDPERSON' => $row[0],
             'LASTNAME' => $row[1],
@@ -44,5 +52,13 @@ class ClientContractImport implements ToModel
             'USERNAME' => $row[25],
             'EXPIRY_RANGE' => $row[26]
         ]);
+    }
+
+    public function chunkSize():int{
+        return 100;
+    }
+    public function batchSize(): int
+    {
+        return 100;
     }
 }
