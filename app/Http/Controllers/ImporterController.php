@@ -3,11 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Imports\ClientContractImport;
-use Maatwebsite\Excel\Facades\Excel;
+
 use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\Controller;
-
+use SimpleXLSX;
+use App\Jobs\ImportExcelJob;
 
 class ImporterController extends Controller{
     public function upload(Request $request){
@@ -29,7 +29,12 @@ class ImporterController extends Controller{
             return view('uploader',['file_path'=>$_GET['file_path']]);
         }
         
-        $result=Excel::import(new ClientContractImport, storage_path("app/".$request->input('path')));
-        
+        ImportExcelJob::dispatch($request->input('path'));
+        print $request->input('path');
+        // $xls=new SimpleXLSX(storage_path("app/".$request->input('path')));
+        // if($xls->success()){
+        //     $rows=$xls->rows();
+        //     dd($rows);
+        // }    
     }
 }
