@@ -1,5 +1,9 @@
 <link type="text/css" rel="stylesheet" href="{{asset('css/style.css')}}"/> 
-
+<h3>
+    <a href="{{route('show')}}">
+    Data imported so far
+    </a>
+</h3>
 @if(!($file_path??false))  
     <form action="{{route('xlsx.upload')}}" method="POST" enctype="multipart/form-data">
         @csrf

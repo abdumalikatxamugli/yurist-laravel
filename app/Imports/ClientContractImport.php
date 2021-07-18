@@ -21,8 +21,13 @@ class ClientContractImport implements ToModel, WithChunkReading
     {
         $currentRowNumber = $this->getRowNumber();
         
-        print_r("importing ".$currentRowNumber."\n\n");
-
+        print_r($currentRowNumber);
+        $check=ClientContract::where([
+            'IDPERSON'=>$row[0]
+        ])->first();
+        if($check){
+            return null;
+        }
         return new ClientContract([
             'IDPERSON' => $row[0],
             'LASTNAME' => $row[1],

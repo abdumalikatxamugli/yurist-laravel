@@ -16,3 +16,7 @@ use Illuminate\Support\Facades\Route;
 Route::match(['GET', 'POST'],'/', "ImporterController@upload")->name('xlsx.upload');
 
 Route::match(['GET', 'POST'], '/importer', "ImporterController@importer")->name("xlsx.importer");
+
+Route::get('/watcher', "ImporterController@watcher")->name('watcher');
+
+Route::get('/data', "ImporterController@show")->name("show");

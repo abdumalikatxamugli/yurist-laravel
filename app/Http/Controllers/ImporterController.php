@@ -6,8 +6,8 @@ use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\Controller;
-use SimpleXLSX;
 use App\Jobs\ImportExcelJob;
+use App\Models\ClientContract;
 
 class ImporterController extends Controller{
     public function upload(Request $request){
@@ -30,11 +30,14 @@ class ImporterController extends Controller{
         }
         
         ImportExcelJob::dispatch($request->input('path'));
-        print $request->input('path');
-        // $xls=new SimpleXLSX(storage_path("app/".$request->input('path')));
-        // if($xls->success()){
-        //     $rows=$xls->rows();
-        //     dd($rows);
-        // }    
+        
+        return redirect()->route("watcher");
+    }
+    public function watcher(){
+        return view('watcher');
+    }
+    public function show(){
+        $data=ClientContract::paginate(10);
+        return view('data', ['data'=>$data]);
     }
 }
