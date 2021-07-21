@@ -1,11 +1,13 @@
 body {
-	width: 728px;
-	margin: 64px auto;
 	background-color: #eee;
 	text-align: center;
 }
-
+.file-upload{
+	width: 768px;
+	margin: 64px auto;
+}
 .file-upload .file-upload-select {
+
 	display: block;
 	color: #dbdbdb;
 	cursor: pointer;

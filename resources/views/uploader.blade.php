@@ -1,3 +1,6 @@
+@extends('layout')
+@section('content')
+
 <link type="text/css" rel="stylesheet" href="{{asset('css/style.css')}}"/> 
 <h3>
     <a href="{{route('show')}}">
@@ -38,3 +41,16 @@
         <a class="upload-btn" href="{{route('xlsx.upload')}}">NO</a>    
     </form>
 @endif
+
+<script type="text/javascript">
+    var menus=document.getElementsByClassName('nav-item');
+    for(let i=0;i<menus.length;i++){
+        if(menus[i].id=="importmenu"){
+            menus[i].classList.add('active');
+        }else{
+            menus[i].classList.remove('active');
+        }
+    }
+</script>
+
+@endsection

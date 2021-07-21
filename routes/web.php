@@ -20,3 +20,5 @@ Route::match(['GET', 'POST'], '/importer', "ImporterController@importer")->name(
 Route::get('/watcher', "ImporterController@watcher")->name('watcher');
 
 Route::get('/data', "ImporterController@show")->name("show");
+
+Route::get('/pdf/{id}', "ImporterController@pdf")->name('pdf');

@@ -1,28 +1,19 @@
-<style>
-    .hidden{
-        display:none;
-    }
-</style>
-<div style="display:flex;align-items:center;justify-content:center;">
-    <div>
-        <a href="{{route('xlsx.upload')}}">Back to uploader</a>
-        <table style="margin:15px 0">
-            <thead>
-                <th>IDPERSON</th>
-                <th>LASTNAME</th>
-                <th>FIRSTNAME</th>
-            </thead>
-            <tbody>
-                @foreach($data as $row)
-                    <tr>
-                        <td>{{$row->IDPERSON}}</td>
-                        <td>{{$row->LASTNAME}}</td>
-                        <td>{{$row->FIRSTNAME}}</td>
-                    </tr>
-                @endforeach
-            </tbody>
-        </table>
-        {{$data->links()}}
-    </div>
+@extends('layout')
+@section('content')
+@livewireStyles
 
-</div>
+<livewire:clientable/>
+
+@livewireScripts
+<script type="text/javascript">
+	var menus=document.getElementsByClassName('nav-item');
+	for(let i=0;i<menus.length;i++){
+		if(menus[i].id=="showmenu"){
+			menus[i].classList.add('active');
+		}else{
+			menus[i].classList.remove('active');
+		}
+	}
+</script>
+
+@endsection

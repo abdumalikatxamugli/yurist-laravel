@@ -21,7 +21,10 @@ class ClientContractImport implements ToModel, WithChunkReading
     {
         $currentRowNumber = $this->getRowNumber();
         
-        print_r($currentRowNumber);
+        if($currentRowNumber>1000){
+            return null;
+        }
+        
         $check=ClientContract::where([
             'IDPERSON'=>$row[0]
         ])->first();
