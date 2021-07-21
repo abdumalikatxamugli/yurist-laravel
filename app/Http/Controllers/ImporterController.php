@@ -86,10 +86,15 @@ class ImporterController extends Controller{
     public function show(){
        return view('data');
     }
+    public function address(Request $req){
+        $data['contract']=ClientContract::where('IDPERSON', $req->id)->first();
+        return view('address', $data);
+    }
     public function pdf(Request $request){
-        $data['hello']='PDF';
-        //return view('letter');
-         $pdf = PDF::loadView('letter', $data);
+        $data['contract']=ClientContract::where('IDPERSON', $request->id)->first();
+        $data['address']=$request->input('address');
+        $pdf = PDF::loadView('letter', $data);
+
          return $pdf->stream('mail.pdf');
     }
 }

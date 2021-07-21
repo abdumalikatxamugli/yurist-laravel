@@ -21,4 +21,6 @@ Route::get('/watcher', "ImporterController@watcher")->name('watcher');
 
 Route::get('/data', "ImporterController@show")->name("show");
 
-Route::get('/pdf/{id}', "ImporterController@pdf")->name('pdf');
+Route::get('/pdf/{id}', "ImporterController@address")->name('pdf');
+
+Route::post('/pdf/{id}', "ImporterController@pdf")->name('pdf');

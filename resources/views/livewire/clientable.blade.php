@@ -34,7 +34,7 @@
                         <td>{{$row->LASTNAME}}</td>
                         <td>{{$row->FIRSTNAME}}</td>
                         <td>{{$row->EXPIRY_RANGE}}</td>
-                        <td><a href="{{route('pdf', 1)}}" target="blank">GENERATE PDF</a></td>
+                        <td><a href="{{route('pdf', $row->IDPERSON)}}" target="blank">GENERATE PDF</a></td>
                     </tr>
                 @endforeach
             </tbody>
