@@ -41,7 +41,7 @@
 <hr>
 <div style="text-align:right">
 	<span style="font-size: 14px;">
-		Гражданину {{$contract->LASTNAME}}
+		Заемщику {{$contract->LASTNAME}}
 		{{$contract->FIRSTNAME}}
 		{{$contract->PATRONYMIC}}
 	</span>
@@ -69,10 +69,14 @@
 		Согласно пункту 4.2. Договора, Вы обязались оплатить суммы рассрочки в порядке и сроки предусмотренные в Графике платежей, определенного в Заявления No{{$contract->CARD}} от {{date('d.m.Y', strtotime($contract->STARTDATE))}} года.
 	</p>
 	<p style="text-align:justify;">
-		Факт исполнения обязательств по Договору со стороны ООО «VARIANT RETAIL FINANCE» подтверждается актом приема -передачи Товара {{$contract->CARD}} от {{date('d.m.Y', strtotime($contract->STARTDATE))}} года, согласно которого Вами получен Товар(ы): {{$contract->EXTGOODSNAME}} в  полном  объеме.  Замечаний  к  качеству,  количеству  и  ассортименту поставленной Товару у покупателя не имеется.
+		Факт исполнения обязательств по Договору со стороны ООО «VARIANT RETAIL FINANCE» подтверждается актом приема -передачи Товара от {{date('d.m.Y', strtotime($contract->STARTDATE))}} года, согласно которого Вами получен Товар(ы): 
+		@foreach($products as $product)
+			{{$product->EXTGOODSNAME}} 
+		@endforeach
+		в  полном  объеме.  Замечаний  к  качеству,  количеству  и  ассортименту поставленной Товару у покупателя не имеется.
 	</p>
 	<p style="text-align:justify;">
-		На {{date('d.m.Y')}} у  Вас перед ООО  «VARIANT RETAIL  FINANCE» по  Договору имеется  задолженность  по  оплате  за  Товар  в  размере {{$contract->ACC1BAL}} сум.
+		На {{date('d.m.Y')}} у  Вас перед ООО  «VARIANT RETAIL  FINANCE» по  Договору имеется  задолженность  по  оплате  за  Товар  в  размере {{$contract->ACC4BAL}} сум.
 	</p>
 
 	<b>На основании изложенного просим:</b>

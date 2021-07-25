@@ -37,6 +37,7 @@ class ClientContract extends Model
             'IDORGDATA',
             'ORGNAMESHORT2',
             'USERNAME',
-            'EXPIRY_RANGE'
+            'EXPIRY_RANGE',
+            'ADDRESS'
     ];
 }

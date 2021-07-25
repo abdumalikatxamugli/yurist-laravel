@@ -45,6 +45,9 @@ class ImporterController extends Controller{
                
                 continue;
             }
+            if($row[26]=='Нет Задолженности'){
+                continue;
+            }
             $contract=new ClientContract([
                 'IDPERSON' => $row[0],
                 'LASTNAME' => $row[1],
@@ -72,7 +75,8 @@ class ImporterController extends Controller{
                 'IDORGDATA' => $row[23],
                 'ORGNAMESHORT2' => $row[24],
                 'USERNAME' => $row[25],
-                'EXPIRY_RANGE' => $row[26]
+                'EXPIRY_RANGE' => $row[26],
+                'ADDRESS'=>$row[27]
             ]);
             $contract->save();
             $index++;
@@ -92,9 +96,17 @@ class ImporterController extends Controller{
     }
     public function pdf(Request $request){
         $data['contract']=ClientContract::where('IDPERSON', $request->id)->first();
+        $data['products']=ClientContract::where('CARD', $data['contract']->CARD)
+                                        ->get();
         $data['address']=$request->input('address');
         $pdf = PDF::loadView('letter', $data);
 
-         return $pdf->stream('mail.pdf');
+        return $pdf->stream(
+            $data['contract']->LASTNAME
+            ." ".
+            $data['contract']->FIRSTNAME
+            ." ".
+            $data['contract']->PATRONYMIC.".pdf"
+        );
     }
 }

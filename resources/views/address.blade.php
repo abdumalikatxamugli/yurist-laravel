@@ -12,7 +12,7 @@
 <form action="{{route('pdf', $contract->IDPERSON)}}" method="POST" target="blank">
 	@csrf
 	<label>Please type the address</label>
-	<input type="test" name="address" class="form-control">
+	<input type="test" name="address" class="form-control" value="{{$contract->ADDRESS}}">
 	<button class="btn btn-primary mt-3">GENERATE</button>
 </form>
 
